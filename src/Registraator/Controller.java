@@ -10,6 +10,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 /**
  * Created by kristjan on 13/12/15.
  */
@@ -40,6 +42,7 @@ public class Controller {
         setupMidPane();
         setupLeftPane();
         mainPane.setCenter(midPane);
+        mainPane.setLeft(leftPane);
         Scene scene = new Scene(mainPane);
         stage.setScene(scene);
         stage.setOnCloseRequest(event -> System.exit(0));
@@ -47,6 +50,14 @@ public class Controller {
     }
 
     private void setupLeftPane() {
+        viewVisitors = new Button();
+        checkInVisitor = new Button();
+        checkOutVisitor = new Button();
+        viewHosts = new Button();
+        addHosts = new Button();
+
+        leftPane.getChildren().addAll(viewVisitors, checkInVisitor, checkOutVisitor, viewHosts, addHosts);
+
 
 
     }
