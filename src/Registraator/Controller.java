@@ -50,11 +50,16 @@ public class Controller {
     }
 
     private void setupLeftPane() {
-        viewVisitors = new Button();
-        checkInVisitor = new Button();
-        checkOutVisitor = new Button();
-        viewHosts = new Button();
-        addHosts = new Button();
+        viewVisitors = new Button("View Visitors");
+        viewVisitors.setPrefSize(100, 50);
+        checkInVisitor = new Button("Check In");
+        checkInVisitor.setPrefSize(100, 50);
+        checkOutVisitor = new Button("Check out");
+        checkOutVisitor.setPrefSize(100, 50);
+        viewHosts = new Button("View Hosts");
+        viewHosts.setPrefSize(100, 50);
+        addHosts = new Button("Add Hosts");
+        addHosts.setPrefSize(100, 50);
 
         leftPane.getChildren().addAll(viewVisitors, checkInVisitor, checkOutVisitor, viewHosts, addHosts);
 
@@ -66,8 +71,8 @@ public class Controller {
         for (int i = 0; i <rows; i++) {
             for (int j = 0; j < columns; j++) {
                 Label info = new Label();
-                info.setMinWidth(150);
-                info.setMaxWidth(150);
+                info.setPrefWidth(150);
+                info.setWrapText(true);
                 midPane.add(info, j, i);
             }
 
