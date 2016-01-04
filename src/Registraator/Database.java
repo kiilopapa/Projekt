@@ -18,7 +18,7 @@ public class Database {
     private void createConnection(){
         try{
             Class.forName("org.sqlite.JDBC");
-            conn =DriverManager.getConnection("jdbc:sqlite:test.db");
+            conn =DriverManager.getConnection("jdbc:sqlite:registrator.db");
         } catch (Exception e){
             System.err.println( e.getClass().getName() + ": " + e.getMessage());
         }
@@ -46,5 +46,12 @@ public class Database {
         System.out.println("success!!");
     }
 
-
+    public void closeConnection() {
+        try {
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("connection closed");
+    }
 }
