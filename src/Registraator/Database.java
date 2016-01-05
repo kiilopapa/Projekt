@@ -46,6 +46,8 @@ public class Database {
         System.out.println("success!!");
     }
 
+    //private void makeQuery
+
     public void closeConnection() {
         try {
             conn.close();

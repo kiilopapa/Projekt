@@ -3,14 +3,9 @@ package Registraator;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
 
 /**
  * Created by kristjan on 13/12/15.
@@ -18,7 +13,8 @@ import java.util.ArrayList;
 public class Controller {
     Stage stage = new Stage();
     BorderPane mainPane;
-    GridPane midPane;
+    GridPane viewVisitorsPane;
+    TilePane addHostPane;
     VBox leftPane;
     Button viewVisitors;
     Button checkInVisitor;
@@ -31,17 +27,16 @@ public class Controller {
 
 
     public Controller() {
-        setupScene();
+        setupScene("");
+        addHosts();
         stage.show();
     }
 
-    private void setupScene() {
+    private void setupScene(String mid) {
         mainPane = new BorderPane();
-        midPane = new GridPane();
         leftPane = new VBox();
-        setupMidPane();
+        setupMidPane(mid);
         setupLeftPane();
-        mainPane.setCenter(midPane);
         mainPane.setLeft(leftPane);
         Scene scene = new Scene(mainPane);
         stage.setScene(scene);
@@ -67,18 +62,51 @@ public class Controller {
 
     }
 
-    private void setupMidPane() {
+    private void setupMidPane(String mid) {
+        switch (mid){
+            case "":
+            case "viewVisitors":
+                viewVisitorsPane();
+                mainPane.setCenter(viewVisitorsPane);
+                break;
+            case "addHosts":
+                addHostPane();
+                mainPane.setCenter(addHostPane);
+                break;
+        }
+    }
+
+    private void addHostPane() {
+        addHostPane = new TilePane();
+        addHostPane.setPrefColumns(2);
+        TextField nameTextField = new TextField();
+        addHostPane.getChildren().addAll(nameTextField);
+    }
+
+    private void viewVisitorsPane() {
+        viewVisitorsPane = new GridPane();
         for (int i = 0; i <rows; i++) {
             for (int j = 0; j < columns; j++) {
                 Label info = new Label();
                 info.setPrefWidth(150);
                 info.setWrapText(true);
-                midPane.add(info, j, i);
+                viewVisitorsPane.add(info, j, i);
             }
-
         }
-        midPane.setGridLinesVisible(true);
+        viewVisitorsPane.setGridLinesVisible(true);
 
+
+    }
+
+    private void addHosts(){
+        addHosts.setOnAction(event -> {
+            System.out.println("vajutasid add hosts");
+            Host host = new Host();
+            setupScene("addHosts");
+            stage.show();
+
+
+        });
     }
 
 }
