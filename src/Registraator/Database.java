@@ -12,7 +12,7 @@ public class Database {
 
     public Database() {
         createConnection();
-        //createTables();
+        createTables();
     }
 
 

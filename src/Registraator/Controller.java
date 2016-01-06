@@ -7,6 +7,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.util.HashMap;
+import java.util.StringJoiner;
+
 /**
  * Created by kristjan on 13/12/15.
  */
@@ -21,6 +24,7 @@ public class Controller {
     Button checkOutVisitor;
     Button viewHosts;
     Button addHosts;
+    Button addingButton;
 
     int rows = 3;
     int columns = 4;
@@ -116,17 +120,29 @@ public class Controller {
 
     private void setupAddHostPane() {
         addHostPane = new GridPane();
-        Label givenNameLabel = new Label("Given Name");
-        addHostPane.add(givenNameLabel, 0, 1);
-        Label surNameLabel = new Label("Family Name");
-        addHostPane.add(surNameLabel, 2, 1);
+        Label firstNameLabel = new Label("First Name");
+        addHostPane.add(firstNameLabel, 0, 1);
+        Label familyNameLabel = new Label("Family Name");
+        addHostPane.add(familyNameLabel, 2, 1);
         TextField nameTextField = new TextField();
         addHostPane.add(nameTextField, 1, 1);
         TextField surNameTextField = new TextField();
         addHostPane.add(surNameTextField, 3, 1);
-        Button addingButton = new Button("add");
+        addingButton = new Button("add");
         addHostPane.add(addingButton, 3, 4);
         addHostPane.setVgap(10);
         addHostPane.setHgap(10);
+
+        addingButton.setOnAction(event -> {
+            HashMap<String, String> data = new HashMap<String, String>();
+            data.put("firstName", firstNameLabel.getText());
+            data.put("familyName", familyNameLabel.getText());
+
+            Database d = new Database();
+            d.addHost(data);
+            d.closeConnection();
+
+        });
     }
+
 }
