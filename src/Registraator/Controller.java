@@ -29,13 +29,14 @@ public class Controller {
     public Controller() {
         setupScene("");
         addHosts();
+
         stage.show();
     }
 
     private void setupScene(String mid) {
         mainPane = new BorderPane();
         leftPane = new VBox();
-        setupMidPane(mid);
+        setupViewVisitorsPane();
         setupLeftPane();
         mainPane.setLeft(leftPane);
         Scene scene = new Scene(mainPane);
@@ -62,7 +63,7 @@ public class Controller {
 
     }
 
-    private void setupMidPane(String mid) {
+/*    private void setupMidPane(String mid) {
         switch (mid){
             case "":
             case "viewVisitors":
@@ -75,15 +76,10 @@ public class Controller {
                 break;
         }
     }
+*/
 
-    private void addHostPane() {
-        addHostPane = new TilePane();
-        addHostPane.setPrefColumns(2);
-        TextField nameTextField = new TextField();
-        addHostPane.getChildren().addAll(nameTextField);
-    }
 
-    private void viewVisitorsPane() {
+    private void setupViewVisitorsPane() {
         viewVisitorsPane = new GridPane();
         for (int i = 0; i <rows; i++) {
             for (int j = 0; j < columns; j++) {
@@ -94,19 +90,24 @@ public class Controller {
             }
         }
         viewVisitorsPane.setGridLinesVisible(true);
-
-
+        mainPane.setCenter(viewVisitorsPane);
     }
 
     private void addHosts(){
         addHosts.setOnAction(event -> {
             System.out.println("vajutasid add hosts");
             Host host = new Host();
-            setupScene("addHosts");
+            //setupScene("addHosts");
+            setupAddHostPane();
+            mainPane.setCenter(addHostPane);
             stage.show();
-
-
         });
     }
 
+    private void setupAddHostPane() {
+        addHostPane = new TilePane();
+        addHostPane.setPrefColumns(2);
+        TextField nameTextField = new TextField();
+        addHostPane.getChildren().addAll(nameTextField);
+    }
 }
