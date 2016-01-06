@@ -1,6 +1,7 @@
 package Registraator;
 
 import java.sql.*;
+import java.util.HashMap;
 
 /**
  * Created by kristjan on 13/12/15.
@@ -11,7 +12,7 @@ public class Database {
 
     public Database() {
         createConnection();
-        createTables();
+        //createTables();
     }
 
 
@@ -33,6 +34,14 @@ public class Database {
                 "FAMILY_NAME TEXT, LOCATION TEXT);";
         makeChangeInDatabase(sql);
 
+    }
+
+    public void addHost(HashMap<String, String> data) {
+        String firstName = data.get("firstName");
+        String familyName = data.get("familyName");
+        String sql = String.format("INSERT INTO HOSTS (FIRST_NAME, FAMILY_NAME) " +
+                "VALUES ('%S', '%S')", firstName, familyName);
+        makeChangeInDatabase(sql);
     }
 
     private void makeChangeInDatabase(String sql) {

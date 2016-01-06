@@ -116,8 +116,8 @@ public class Controller {
 
     private void setupAddHostPane() {
         addHostPane = new GridPane();
-        Label nameLabel = new Label("Given Name");
-        addHostPane.add(nameLabel, 0, 1);
+        Label givenNameLabel = new Label("Given Name");
+        addHostPane.add(givenNameLabel, 0, 1);
         Label surNameLabel = new Label("Family Name");
         addHostPane.add(surNameLabel, 2, 1);
         TextField nameTextField = new TextField();
