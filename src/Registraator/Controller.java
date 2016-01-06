@@ -14,7 +14,7 @@ public class Controller {
     Stage stage = new Stage();
     BorderPane mainPane;
     GridPane viewVisitorsPane;
-    TilePane addHostPane;
+    GridPane addHostPane;
     VBox leftPane;
     Button viewVisitors;
     Button checkInVisitor;
@@ -27,13 +27,16 @@ public class Controller {
 
 
     public Controller() {
-        setupScene("");
+        setupScene();
+        viewVisitors();
+
         addHosts();
 
         stage.show();
     }
 
-    private void setupScene(String mid) {
+
+    private void setupScene() {
         mainPane = new BorderPane();
         leftPane = new VBox();
         setupViewVisitorsPane();
@@ -59,8 +62,6 @@ public class Controller {
 
         leftPane.getChildren().addAll(viewVisitors, checkInVisitor, checkOutVisitor, viewHosts, addHosts);
 
-
-
     }
 
 /*    private void setupMidPane(String mid) {
@@ -77,6 +78,15 @@ public class Controller {
         }
     }
 */
+
+    private void viewVisitors() {
+        viewVisitors.setOnAction(event -> {
+            System.out.println("vajutasid view visitors");
+            setupViewVisitorsPane();
+            mainPane.setCenter(viewVisitorsPane);
+            stage.show();
+        });
+    }
 
 
     private void setupViewVisitorsPane() {
@@ -105,9 +115,18 @@ public class Controller {
     }
 
     private void setupAddHostPane() {
-        addHostPane = new TilePane();
-        addHostPane.setPrefColumns(2);
+        addHostPane = new GridPane();
+        Label nameLabel = new Label("Given Name");
+        addHostPane.add(nameLabel, 0, 1);
+        Label surNameLabel = new Label("Family Name");
+        addHostPane.add(surNameLabel, 2, 1);
         TextField nameTextField = new TextField();
-        addHostPane.getChildren().addAll(nameTextField);
+        addHostPane.add(nameTextField, 1, 1);
+        TextField surNameTextField = new TextField();
+        addHostPane.add(surNameTextField, 3, 1);
+        Button addingButton = new Button("add");
+        addHostPane.add(addingButton, 3, 4);
+        addHostPane.setVgap(10);
+        addHostPane.setHgap(10);
     }
 }
