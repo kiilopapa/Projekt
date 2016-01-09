@@ -13,16 +13,22 @@ import java.util.HashMap;
  */
 public class Host {
     GridPane addHostPane;
+    GridPane viewHostPane;
     Button addingButton;
 
 
     private String givenName;
     private String surName;
-    private Button updateButton;
 
     public Host() {
         setupAddHostPane();
+        setupViewHostsPane();
 
+
+    }
+
+    private void setupViewHostsPane() {
+        viewHostPane = new GridPane();
 
     }
 
