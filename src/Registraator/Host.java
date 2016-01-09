@@ -4,8 +4,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -17,19 +17,34 @@ public class Host {
     Button addingButton;
 
 
-    private String givenName;
-    private String surName;
+    String firstName;
+    String familyName;
 
     public Host() {
         setupAddHostPane();
-        setupViewHostsPane();
-
-
     }
 
-    private void setupViewHostsPane() {
+    public void setupViewHostsPane() {
         viewHostPane = new GridPane();
+        Database d = new Database();
+        ArrayList data;
+        data = d.getHosts();
+        d.closeConnection();
 
+        //Label firstName = new Label();
+        //Label familyName;
+        for (int i = 0; i < data.size(); i++) {
+            //HashMap<String, String> hash =new HashMap<String, String>();
+            HashMap hash = new HashMap();
+            hash = (HashMap) data.get(i);
+            System.out.println(hash);
+            //System.out.println(i);
+            for (int j = 0; j < hash.size(); j++) {
+                Label info = new Label((String) hash.get(j));
+                //System.out.println(info.getText());
+                viewHostPane.add(info, j, i);
+            }
+        }
     }
 
 
@@ -49,9 +64,11 @@ public class Host {
         addHostPane.setHgap(10);
 
         addingButton.setOnAction(event -> {
+            firstName = nameTextField.getText();
+            familyName = surNameTextField.getText();
             HashMap<String, String> data = new HashMap<String, String>();
-            data.put("firstName", firstNameLabel.getText());
-            data.put("familyName", familyNameLabel.getText());
+            data.put("firstName", firstName);
+            data.put("familyName", familyName);
 
             Database d = new Database();
             d.addHost(data);

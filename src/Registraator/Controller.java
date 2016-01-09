@@ -35,6 +35,7 @@ public class Controller {
         viewVisitors();
 
         addHosts();
+        viewHosts();
 
         stage.show();
     }
@@ -114,6 +115,16 @@ public class Controller {
             //setupScene("addHosts");
             //host.setupAddHostPane();
             mainPane.setCenter(host.addHostPane);
+            stage.show();
+        });
+    }
+
+    private void viewHosts (){
+        viewHosts.setOnAction(event -> {
+            System.out.println("vajutasid nuppu view hosts");
+            Host host = new Host();
+            host.setupViewHostsPane();
+            mainPane.setCenter(host.viewHostPane);
             stage.show();
         });
     }
