@@ -15,6 +15,8 @@ public class Host {
     GridPane addHostPane;
     GridPane viewHostPane;
     Button addingButton;
+    double prefWidth = 150;
+    double prefHeight = 50;
 
 
     String firstName;
@@ -26,25 +28,30 @@ public class Host {
 
     public void setupViewHostsPane() {
         viewHostPane = new GridPane();
+        viewHostPane.setGridLinesVisible(true);
         Database d = new Database();
         ArrayList data;
         data = d.getHosts();
         d.closeConnection();
+        System.out.println(data.size());
 
         //Label firstName = new Label();
         //Label familyName;
         for (int i = 0; i < data.size(); i++) {
-            //HashMap<String, String> hash =new HashMap<String, String>();
-            HashMap hash = new HashMap();
-            hash = (HashMap) data.get(i);
+            HashMap<String, String> hash;
+            hash = (HashMap<String, String>) data.get(i);
             System.out.println(hash);
             //System.out.println(i);
-            for (int j = 0; j < hash.size(); j++) {
-                Label info = new Label((String) hash.get(j));
-                //System.out.println(info.getText());
-                viewHostPane.add(info, j, i);
+            Label label0 = new Label(String.valueOf(i));
+            label0.setPrefSize(prefWidth, prefHeight);
+            viewHostPane.add(label0, 0, i);
+            Label label1 = new Label(hash.get("firstName"));
+            label1.setPrefSize(prefWidth, prefHeight);
+            viewHostPane.add(label1, 1, i );
+            Label label2 =new Label(hash.get("familyName"));
+            label2.setPrefSize(prefWidth, prefHeight);
+            viewHostPane.add(label2, 2, i);
             }
-        }
     }
 
 
@@ -64,6 +71,7 @@ public class Host {
         addHostPane.setHgap(10);
 
         addingButton.setOnAction(event -> {
+
             firstName = nameTextField.getText();
             familyName = surNameTextField.getText();
             HashMap<String, String> data = new HashMap<String, String>();

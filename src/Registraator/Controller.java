@@ -3,12 +3,8 @@ package Registraator;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-
-import java.util.HashMap;
-import java.util.StringJoiner;
 
 /**
  * Created by kristjan on 13/12/15.
@@ -28,9 +24,13 @@ public class Controller {
 
     int rows = 3;
     int columns = 4;
+    double prefWidth = 150;
+    double prefHeight = 50;
+
 
 
     public Controller() {
+
         setupScene();
         viewVisitors();
 
@@ -55,15 +55,15 @@ public class Controller {
 
     private void setupLeftPane() {
         viewVisitors = new Button("View Visitors");
-        viewVisitors.setPrefSize(100, 50);
+        viewVisitors.setPrefSize(prefWidth, prefHeight);
         checkInVisitor = new Button("Check In");
-        checkInVisitor.setPrefSize(100, 50);
+        checkInVisitor.setPrefSize(prefWidth, prefHeight);
         checkOutVisitor = new Button("Check out");
-        checkOutVisitor.setPrefSize(100, 50);
+        checkOutVisitor.setPrefSize(prefWidth, prefHeight);
         viewHosts = new Button("View Hosts");
-        viewHosts.setPrefSize(100, 50);
+        viewHosts.setPrefSize(prefWidth, prefHeight);
         addHosts = new Button("Add Hosts");
-        addHosts.setPrefSize(100, 50);
+        addHosts.setPrefSize(prefWidth, prefHeight);
 
         leftPane.getChildren().addAll(viewVisitors, checkInVisitor, checkOutVisitor, viewHosts, addHosts);
 
@@ -99,7 +99,7 @@ public class Controller {
         for (int i = 0; i <rows; i++) {
             for (int j = 0; j < columns; j++) {
                 Label info = new Label();
-                info.setPrefWidth(150);
+                info.setPrefSize(prefWidth, prefHeight);
                 info.setWrapText(true);
                 viewVisitorsPane.add(info, j, i);
             }
