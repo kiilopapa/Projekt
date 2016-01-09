@@ -22,9 +22,6 @@ public class Host {
     String firstName;
     String familyName;
 
-    public Host() {
-        setupAddHostPane();
-    }
 
     public void setupViewHostsPane() {
         viewHostPane = new GridPane();
@@ -55,7 +52,7 @@ public class Host {
     }
 
 
-    private void setupAddHostPane() {
+    public void setupAddHostPane() {
         addHostPane = new GridPane();
         Label firstNameLabel = new Label("First Name");
         addHostPane.add(firstNameLabel, 0, 1);

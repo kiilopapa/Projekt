@@ -34,6 +34,7 @@ public class Controller {
         setupScene();
         viewVisitors();
 
+        checkInVisitor();
         addHosts();
         viewHosts();
 
@@ -108,12 +109,22 @@ public class Controller {
         mainPane.setCenter(viewVisitorsPane);
     }
 
+    private void checkInVisitor() {
+        checkInVisitor.setOnAction(event -> {
+            System.out.println("vajutasid check in");
+            Visitor visitor = new Visitor();
+            visitor.setupCheckInPane();
+            mainPane.setCenter(visitor.checkInPane);
+            stage.show();
+        });
+
+    }
+
     private void addHosts(){
         addHosts.setOnAction(event -> {
             System.out.println("vajutasid add hosts");
             Host host = new Host();
-            //setupScene("addHosts");
-            //host.setupAddHostPane();
+            host.setupAddHostPane();
             mainPane.setCenter(host.addHostPane);
             stage.show();
         });
