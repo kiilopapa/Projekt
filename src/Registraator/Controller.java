@@ -17,14 +17,14 @@ public class Controller {
     Stage stage = new Stage();
     BorderPane mainPane;
     GridPane viewVisitorsPane;
-    GridPane addHostPane;
+    //GridPane addHostPane;
     VBox leftPane;
     Button viewVisitors;
     Button checkInVisitor;
     Button checkOutVisitor;
     Button viewHosts;
     Button addHosts;
-    Button addingButton;
+    //Button addingButton;
 
     int rows = 3;
     int columns = 4;
@@ -112,37 +112,10 @@ public class Controller {
             System.out.println("vajutasid add hosts");
             Host host = new Host();
             //setupScene("addHosts");
-            setupAddHostPane();
-            mainPane.setCenter(addHostPane);
+            //host.setupAddHostPane();
+            mainPane.setCenter(host.addHostPane);
             stage.show();
         });
     }
-
-    private void setupAddHostPane() {
-        addHostPane = new GridPane();
-        Label firstNameLabel = new Label("First Name");
-        addHostPane.add(firstNameLabel, 0, 1);
-        Label familyNameLabel = new Label("Family Name");
-        addHostPane.add(familyNameLabel, 2, 1);
-        TextField nameTextField = new TextField();
-        addHostPane.add(nameTextField, 1, 1);
-        TextField surNameTextField = new TextField();
-        addHostPane.add(surNameTextField, 3, 1);
-        addingButton = new Button("add");
-        addHostPane.add(addingButton, 3, 4);
-        addHostPane.setVgap(10);
-        addHostPane.setHgap(10);
-
-        addingButton.setOnAction(event -> {
-            HashMap<String, String> data = new HashMap<String, String>();
-            data.put("firstName", firstNameLabel.getText());
-            data.put("familyName", familyNameLabel.getText());
-
-            Database d = new Database();
-            d.addHost(data);
-            d.closeConnection();
-
-        });
-    }
-
+    
 }
