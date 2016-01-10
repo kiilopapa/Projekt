@@ -50,7 +50,7 @@ public class Controller {
         Visitor v = new Visitor();
         v.setupViewVisitorsPane();
         mainPane.setCenter(v.viewVisitorsPane);
-        Scene scene = new Scene(mainPane);
+        Scene scene = new Scene(mainPane, 800, 250);
         stage.setScene(scene);
         stage.setOnCloseRequest(event -> System.exit(0));
         stage.show();
@@ -62,7 +62,7 @@ public class Controller {
         viewVisitors.setPrefSize(prefWidth, prefHeight);
         checkInVisitor = new Button("Check In");
         checkInVisitor.setPrefSize(prefWidth, prefHeight);
-        checkOutVisitor = new Button("Check out");
+        checkOutVisitor = new Button();
         checkOutVisitor.setPrefSize(prefWidth, prefHeight);
         viewHosts = new Button("View Hosts");
         viewHosts.setPrefSize(prefWidth, prefHeight);

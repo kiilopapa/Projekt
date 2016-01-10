@@ -120,7 +120,7 @@ public class Visitor {
             //System.out.println(i);
             int row = i+1;
 
-            String labelId = i + " " + hash.get("firstName") + " " + hash.get("familyName") +
+            String labelId = String.valueOf(row) + " " + hash.get("firstName") + " " + hash.get("familyName") +
                     " " + hash.get("hostToVisit");
             Label label0 = new Label(String.valueOf(i));
             label0.setPrefSize(prefWidth, prefHeight);
@@ -150,10 +150,11 @@ public class Visitor {
         viewVisitorsPane.setOnMouseClicked(event -> {
             try {
                 Label label = (Label) event.getTarget();
-                String id = label.getId();
-                System.out.println(id);
-
-
+                String[] id = label.getId().split(" ");
+                int row = Integer.parseInt(id[0]);
+                String firstName = id[1];
+                String familyName = id[2];
+                String prompt = String.format("Check Out %s %s ?", firstName, familyName);
                 //Collection labels = viewVisitorsPane.getChildren();
                 /*for (Node node : viewVisitorsPane.getChildren() ) {
                     String s = node.getId();
@@ -168,8 +169,14 @@ public class Visitor {
                 }
                 */
 
-                //int firstnameIndex = (Integer.parseInt(row)*5 + 2);
-                //int familyNameIndex = (Integer.parseInt(row)*5 + 3);
+                //int firstnameIndex = ((row)*5 + 2);
+                //int familyNameIndex = ((row)*5 + 3);
+                //int cardIndex = ((row)*5 + 4);
+                //int hostIndex = ((row)*5 + 5);
+                Label checkOut = new Label("   Check Out ?");
+                viewVisitorsPane.add(checkOut, 0, row);
+                Confirmprompt c = new Confirmprompt(prompt);
+
                 //System.out.println(viewVisitorsPane.getChildren().get(firstnameIndex).toString());
                 //System.out.println(familyNameIndex);
             } catch (Exception e){}
