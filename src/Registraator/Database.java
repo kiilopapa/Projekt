@@ -176,4 +176,9 @@ public class Database {
 
 
     }
+
+    public void checkOutVisitor(String firstName, String familyName) {
+        String sql = String.format("DELETE FROM * FROM VISITORS WHERE FIRSTNAME = '%s' AND FAMILYNAME = '%s'", firstName, familyName);
+        System.out.println(sql);
+    }
 }

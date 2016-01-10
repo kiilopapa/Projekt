@@ -176,6 +176,13 @@ public class Visitor {
                 Label checkOut = new Label("   Check Out ?");
                 viewVisitorsPane.add(checkOut, 0, row);
                 Confirmprompt c = new Confirmprompt(prompt);
+                System.out.println(c.choice);
+                if (c.choice.equals("ok")){
+                    Database d = new Database();
+                    d.checkOutVisitor(firstName, familyName);
+                    d.closeConnection();
+
+                }
 
                 //System.out.println(viewVisitorsPane.getChildren().get(firstnameIndex).toString());
                 //System.out.println(familyNameIndex);

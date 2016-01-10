@@ -14,6 +14,7 @@ public class Confirmprompt {
 
     Button okButton;
     Button cancelButton;
+    String choice = "ok";
 
     Stage stage = new Stage();
 
@@ -22,7 +23,23 @@ public class Confirmprompt {
 
     public Confirmprompt(String prompt){
         setupScene(prompt);
+        okButton();
+        cancelButton();
 
+    }
+
+    private void cancelButton() {
+        cancelButton.setOnAction(event -> {
+            choice = "cancel";
+            stage.close();
+        });
+    }
+
+    private void okButton() {
+        okButton.setOnAction(event -> {
+            choice = "ok";
+            stage.close();
+        });
     }
 
     private void setupScene(String prompt) {
@@ -38,10 +55,10 @@ public class Confirmprompt {
         layout.setVgap(50);
 
 
-
-
         stage.setScene(scene);
         stage.show();
+
+        stage.setOnCloseRequest(event -> System.exit(0));
 
     }
 
