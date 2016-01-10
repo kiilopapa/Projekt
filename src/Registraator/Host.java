@@ -30,8 +30,6 @@ public class Host {
         ArrayList data;
         data = d.getHosts();
         d.closeConnection();
-        System.out.println(data.size());
-
         //Label firstName = new Label();
         //Label familyName;
         for (int i = 0; i < data.size(); i++) {

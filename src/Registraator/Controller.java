@@ -32,11 +32,14 @@ public class Controller {
     public Controller() {
 
         setupScene();
-        viewVisitors();
 
+        viewVisitors();
         checkInVisitor();
         addHosts();
         viewHosts();
+
+        Visitor v = new Visitor();
+        v.setupViewVisitorsPane();
 
         stage.show();
     }
@@ -45,7 +48,6 @@ public class Controller {
     private void setupScene() {
         mainPane = new BorderPane();
         leftPane = new VBox();
-        setupViewVisitorsPane();
         setupLeftPane();
         mainPane.setLeft(leftPane);
         Scene scene = new Scene(mainPane);
@@ -88,26 +90,13 @@ public class Controller {
     private void viewVisitors() {
         viewVisitors.setOnAction(event -> {
             System.out.println("vajutasid view visitors");
-            setupViewVisitorsPane();
+            Visitor visitor = new Visitor();
+            visitor.setupViewVisitorsPane();
             mainPane.setCenter(viewVisitorsPane);
             stage.show();
         });
     }
 
-
-    private void setupViewVisitorsPane() {
-        viewVisitorsPane = new GridPane();
-        for (int i = 0; i <rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                Label info = new Label();
-                info.setPrefSize(prefWidth, prefHeight);
-                info.setWrapText(true);
-                viewVisitorsPane.add(info, j, i);
-            }
-        }
-        viewVisitorsPane.setGridLinesVisible(true);
-        mainPane.setCenter(viewVisitorsPane);
-    }
 
     private void checkInVisitor() {
         checkInVisitor.setOnAction(event -> {
