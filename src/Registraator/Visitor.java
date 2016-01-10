@@ -1,6 +1,7 @@
 package Registraator;
 
 import javafx.collections.FXCollections;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -94,6 +95,18 @@ public class Visitor {
     public void setupViewVisitorsPane() {
         viewVisitorsPane = new GridPane();
         viewVisitorsPane.setGridLinesVisible(true);
+        selectFromVieWVisitors();
+
+        Label label00 = new Label("#");
+        Label label10 = new Label("Firstname");
+        Label label20 = new Label("Familyname");
+        Label label30 = new Label("Visitorscard nr");
+        Label label40 = new Label("Host");
+        viewVisitorsPane.add(label00, 0,0);
+        viewVisitorsPane.add(label10, 1,0);
+        viewVisitorsPane.add(label20, 2,0);
+        viewVisitorsPane.add(label30, 3,0);
+        viewVisitorsPane.add(label40, 4,0);
 
         Database d = new Database();
         ArrayList data;
@@ -103,24 +116,63 @@ public class Visitor {
         for (int i = 0; i <data.size(); i++) {
             HashMap<String, String> hash;
             hash = (HashMap<String, String>) data.get(i);
-            System.out.println(hash);
-            System.out.println(i);
+            //System.out.println(hash);
+            //System.out.println(i);
+            int row = i+1;
+
+            String labelId = i + " " + hash.get("firstName") + " " + hash.get("familyName") +
+                    " " + hash.get("hostToVisit");
             Label label0 = new Label(String.valueOf(i));
-            label0.setPrefSize(20, prefHeight);
-            viewVisitorsPane.add(label0, 0, i);
+            label0.setPrefSize(prefWidth, prefHeight);
+            label0.setId(labelId);
+            viewVisitorsPane.add(label0, 0, row);
             Label label1 = new Label(hash.get("firstName"));
             label1.setPrefSize(prefWidth, prefHeight);
-            viewVisitorsPane.add(label1, 1, i );
+            label1.setId(labelId);
+            viewVisitorsPane.add(label1, 1, row );
             Label label2 =new Label(hash.get("familyName"));
             label2.setPrefSize(prefWidth, prefHeight);
-            viewVisitorsPane.add(label2, 2, i);
+            label2.setId(labelId);
+            viewVisitorsPane.add(label2, 2, row);
             Label label3 = new Label(hash.get("cardNumber"));
             label3.setPrefSize(prefWidth, prefHeight);
-            viewVisitorsPane.add(label3, 3, i);
+            label3.setId(labelId);
+            viewVisitorsPane.add(label3, 3, row);
             Label label4 = new Label(hash.get("hostToVisit"));
             label4.setPrefSize(prefWidth, prefHeight);
-            viewVisitorsPane.add(label4, 4, i);
+            label4.setId(labelId);
+            viewVisitorsPane.add(label4, 4, row);
         }
 
+    }
+
+    public void selectFromVieWVisitors() {
+        viewVisitorsPane.setOnMouseClicked(event -> {
+            try {
+                Label label = (Label) event.getTarget();
+                String id = label.getId();
+                System.out.println(id);
+
+
+                //Collection labels = viewVisitorsPane.getChildren();
+                /*for (Node node : viewVisitorsPane.getChildren() ) {
+                    String s = node.getId();
+                    System.out.println(s);
+                    System.out.println(id);
+                    if (s.equals(id)){
+                        System.out.println("olema");
+                    }else {
+                        System.out.println("muu");
+                    }
+
+                }
+                */
+
+                //int firstnameIndex = (Integer.parseInt(row)*5 + 2);
+                //int familyNameIndex = (Integer.parseInt(row)*5 + 3);
+                //System.out.println(viewVisitorsPane.getChildren().get(firstnameIndex).toString());
+                //System.out.println(familyNameIndex);
+            } catch (Exception e){}
+        });
     }
 }

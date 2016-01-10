@@ -38,13 +38,13 @@ public class Host {
             System.out.println(hash);
             //System.out.println(i);
             Label label0 = new Label(String.valueOf(i));
-            label0.setPrefSize(prefWidth, prefHeight);
+            label0.setMinSize(prefWidth, prefHeight);
             viewHostPane.add(label0, 0, i);
             Label label1 = new Label(hash.get("firstName"));
-            label1.setPrefSize(prefWidth, prefHeight);
+            label1.setMinSize(prefWidth, prefHeight);
             viewHostPane.add(label1, 1, i );
             Label label2 =new Label(hash.get("familyName"));
-            label2.setPrefSize(prefWidth, prefHeight);
+            label2.setMinSize(prefWidth, prefHeight);
             viewHostPane.add(label2, 2, i);
             }
     }

@@ -3,6 +3,7 @@ package Registraator;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
@@ -12,7 +13,7 @@ import javafx.stage.Stage;
 public class Controller {
     Stage stage = new Stage();
     BorderPane mainPane;
-    GridPane viewVisitorsPane;
+    ScrollPane scrollPane;
     //GridPane addHostPane;
     VBox leftPane;
     Button viewVisitors;
@@ -22,8 +23,6 @@ public class Controller {
     Button addHosts;
     //Button addingButton;
 
-    int rows = 3;
-    int columns = 4;
     double prefWidth = 150;
     double prefHeight = 50;
 
@@ -38,21 +37,23 @@ public class Controller {
         addHosts();
         viewHosts();
 
-        Visitor v = new Visitor();
-        v.setupViewVisitorsPane();
 
-        stage.show();
     }
 
 
     private void setupScene() {
         mainPane = new BorderPane();
+        scrollPane = new ScrollPane();
         leftPane = new VBox();
         setupLeftPane();
         mainPane.setLeft(leftPane);
+        Visitor v = new Visitor();
+        v.setupViewVisitorsPane();
+        mainPane.setCenter(v.viewVisitorsPane);
         Scene scene = new Scene(mainPane);
         stage.setScene(scene);
         stage.setOnCloseRequest(event -> System.exit(0));
+        stage.show();
 
     }
 
@@ -90,9 +91,9 @@ public class Controller {
     private void viewVisitors() {
         viewVisitors.setOnAction(event -> {
             System.out.println("vajutasid view visitors");
-            Visitor visitor = new Visitor();
-            visitor.setupViewVisitorsPane();
-            mainPane.setCenter(viewVisitorsPane);
+            Visitor v = new Visitor();
+            v.setupViewVisitorsPane();
+            mainPane.setCenter(v.viewVisitorsPane);
             stage.show();
         });
     }
@@ -101,9 +102,9 @@ public class Controller {
     private void checkInVisitor() {
         checkInVisitor.setOnAction(event -> {
             System.out.println("vajutasid check in");
-            Visitor visitor = new Visitor();
-            visitor.setupCheckInPane();
-            mainPane.setCenter(visitor.checkInPane);
+            Visitor v = new Visitor();
+            v.setupCheckInPane();
+            mainPane.setCenter(v.checkInPane);
             stage.show();
         });
 
@@ -112,9 +113,9 @@ public class Controller {
     private void addHosts(){
         addHosts.setOnAction(event -> {
             System.out.println("vajutasid add hosts");
-            Host host = new Host();
-            host.setupAddHostPane();
-            mainPane.setCenter(host.addHostPane);
+            Host h = new Host();
+            h.setupAddHostPane();
+            mainPane.setCenter(h.addHostPane);
             stage.show();
         });
     }
